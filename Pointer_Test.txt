@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+const int Big = 7;
+
+int main ()
+{
+    int intArr[Big];
+    int *pArr = intArr;
+    printf("请依次输入8个整数:\n");
+    for (int i = 0; i <= Big; i++) {
+        printf("第 %d 个整数:",(i+1));
+        scanf("%d",(pArr+i));
+    }
+    printf("调整前数组如下:\n");
+    for (int i = 0; i <= 7; ++i) {
+        printf("%d\t",*(pArr+i));
+    }
+    printf("调整后的数组如下:\n");
+    int max = pArr[0];
+    int min = pArr[0];
+    int pointer_max;
+    int pointer_min;
+    for (int i = 1; i <= Big; i++)
+    {
+        if (pArr[i] > max){
+            pointer_max = i;
+        }
+        if (pArr[i] < min){
+            min = pArr[i];
+            pointer_min = i;
+        }
+    }
+    /*交换数组元素位置*/
+    int temp = pArr[0];
+    pArr[0] = pArr[pointer_max];
+    pArr[pointer_max] = temp;
+    temp = pArr[Big];
+    pArr[Big] = pArr[pointer_min];
+    pArr[pointer_min] = temp;
+    for (int i = 0; i <= Big; ++i) {
+        printf("%d\t",*(pArr+i));
+    }
+    system("pause");
+    return 0;
+}
